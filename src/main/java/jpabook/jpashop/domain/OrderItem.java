@@ -24,6 +24,11 @@ public class OrderItem {
     private int orderPrice; //주문 가격
     private int count; // 주문 수량
 
+    protected OrderItem(){
+
+    }
+
+
     //==생성 메서드==//
     /**
      * ()을 ()얼마에 () 몇 개 샀어.

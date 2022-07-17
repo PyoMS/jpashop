@@ -21,6 +21,10 @@ public class Order {
     @JoinColumn(name="member_id") //FK 설정하는 annotation
     private Member member;
 
+    /**
+     * Cascade 옵션이 ALL이면 Order가 persist 될 때 같이 persist 되는것.
+     * 단, 연관성이 다른 곳에도 작용한다면 사용에 유의해야 함.
+     * */
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
@@ -70,8 +74,8 @@ public class Order {
      * */
     public void cancel(){
         if(delivery.getStatus() == DeliveryStatus.COMP) throw new IllegalStateException("이미 배송이 완료된 상품은 취소가 불가능합니다.");
-        this.setStatus(OrderStatus.CANCEL); //상태 -> cancel
 
+        this.setStatus(OrderStatus.CANCEL); //상태 -> cancel
         for (OrderItem orderItem : this.orderItems) {
             orderItem.cancel(); //수량 원복
         }
