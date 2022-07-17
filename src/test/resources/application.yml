@@ -1,0 +1,20 @@
+# 기본적으로 Spring Boot에서는 주석되어 있는 설정 값이 없을 경우에 알아서 mem(Memory모드)로 h2 DB를 생성해준다. (default)
+#Spring:
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+##        show_sql: true
+#        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace

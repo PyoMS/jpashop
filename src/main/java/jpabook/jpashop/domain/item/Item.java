@@ -25,4 +25,5 @@ public abstract class Item {
     @ManyToMany(mappedBy = "items")
     private List<Category> categoryies = new ArrayList<>();
 
+
 }

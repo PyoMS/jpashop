@@ -27,13 +27,13 @@ public class MemberRepository {
     }
 
     public List<Member> findAll(){
-        return em.createQuery("select * from Member m", Member.class).getResultList();
+        return em.createQuery("select m from Member m", Member.class).getResultList();
         //문법이 SQL과 약간 다름. JPQL 문법 사용할 것.
         //엔티티 객체를 대상으로 쿼리를 한다고 생각하면 됨.
     }
 
     public List<Member> findByName(String name){
-        return em.createQuery("select * from Member m where m.name = :name", Member.class)
+        return em.createQuery("select m from Member m where m.name = :name", Member.class)
                 .setParameter("name", name)
                 .getResultList();
     }
