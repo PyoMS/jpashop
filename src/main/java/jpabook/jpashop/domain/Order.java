@@ -17,7 +17,7 @@ public class Order {
     @Column(name="order_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)  // FetchType.LAZY => 지연로딩, DB에서 안긁어 온다는 의미..
     @JoinColumn(name="member_id") //FK 설정하는 annotation
     private Member member;
 
