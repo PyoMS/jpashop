@@ -52,4 +52,13 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    //select 절에 Member와 Delivery를 한번에 다 영속성 컨텍스트에 기입할 수 있다.
+    /** Fetch Join (JPA에만 있는 명령어. Entity 영속성 컨텍스트에 주입해준다. **/
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "select o from Order o " +
+                        "join fetch o.member m " +
+                        "join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
 }

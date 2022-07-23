@@ -61,6 +61,14 @@ public class OrderSimpleApiController {
         return new Result(simpleOrderDtoList.size(), simpleOrderDtoList);   /** 쿼리 수행 총 5번 발생 **/
     }
 
+    @GetMapping("/api/v3/simple-orders")
+    public List<SimpleOrderDto> ordersV3() {
+        List<Order> orders = orderRepository.findAllWithMemberDelivery();
+        List<SimpleOrderDto> simpleOrderDtoListm = orders.stream().map(m -> new SimpleOrderDto(m))
+                .collect(Collectors.toList());
+        return simpleOrderDtoListm;
+    }
+
     @Data
     @AllArgsConstructor
     private static class Result<T>{
