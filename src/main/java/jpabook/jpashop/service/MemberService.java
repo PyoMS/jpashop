@@ -45,4 +45,13 @@ public class MemberService {
         return memberRepository.findOne(memberId);
     }
 
+    @Transactional  //해당 트랜잭션이 끝나는 시점에 변경된 값이 존재하면 => commit & flush
+    public void update(Long id, String name) {
+        Member one = memberRepository.findOne(id); // 레퍼지토리로 id값에 해당하는 엔티티를 영속화한다. 영속성 컨텍스트
+        one.setName(name);
+    }
+
+    public Member findOne(Long id) {
+        return memberRepository.findOne(id);
+    }
 }
