@@ -13,6 +13,7 @@ Spring:
       hibernate:
 #        show_sql: true
         format_sql: true
+        default_batch_fetch_size: 100 # SQL 를 생성할 때, in 절에 대한 사이즈.
 #  h2:
 #    console:
 #      enabled: true
