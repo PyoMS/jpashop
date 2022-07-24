@@ -63,5 +63,15 @@ public class OrderRepository {
     }
 
 
-
+    /** 일대다 join
+     *
+     * JPQL의 distinct는 기존 SQL 기능 + 해당 ID값의 중복제거를 제공해준다. **/
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o " +
+                        "join fetch o.member m " +
+                        "join fetch o.delivery d " +
+                        "join fetch o.orderItems oi " +
+                        "join fetch oi.item i", Order.class).getResultList();
+    }
 }
