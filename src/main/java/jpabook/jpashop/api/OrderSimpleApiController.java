@@ -5,6 +5,8 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import jpabook.jpashop.repository.order.query.OrderQueryDto;
+import jpabook.jpashop.repository.order.query.OrderQueryRepository;
 import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
 import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryRepository;
 import lombok.AllArgsConstructor;
@@ -34,6 +36,7 @@ public class OrderSimpleApiController {
  * **/
     private final OrderRepository orderRepository;
     private final OrderSimpleQueryRepository orderSimpleQueryRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
     @GetMapping("api/v1/simple-orders") //양방향 연관관계에 영향이 있다... => 둘 중 하나는 JsonIgnore 처리 해야한다.
     public List<Order> orderV1() {
@@ -71,8 +74,13 @@ public class OrderSimpleApiController {
         return simpleOrderDtoListm;
     }
 
+    @GetMapping("/api/v4/orders")
+    public List<OrderQueryDto> ordersV4() {
+        return orderQueryRepository.findOrderQueryDtos();
+    }
+
     @GetMapping("/api/v4/simple-orders")
-    public List<OrderSimpleQueryDto> ordersV4() {
+    public List<OrderSimpleQueryDto> ordersV4_simple() {
         return orderSimpleQueryRepository.findOrderDtos();
     }
 
